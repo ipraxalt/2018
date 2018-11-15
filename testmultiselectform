@@ -1,0 +1,54 @@
+    $fieldset->addField('event_rate', 'checkbox', array(
+        'label'     => __('Need To Rate Between 0 To 10'),
+        'onclick'   => 'this.value = this.checked ? 1 : 0;',
+        'name'      => 'event_rate',
+        'checked'   => $eventRate==1 ? 'checked' :'',
+        ));
+
+         $fieldset->addField('assign_to', 'multiselect', 
+            array(
+                'name' => 'assign_to',
+                'label' => __('Assign To'),
+                'title' => __('assign_to'),
+                'values' => $this->getCustomerGroupArray(),  
+                'required' => true,
+                'onchange' => 'checkSelectedItem(this)',
+            )
+            )->setAfterElementHtml("<script type=\"text/javascript\">
+                     function checkSelectedItem(ev){ 
+                       var clickedOption = jQuery(ev.target); 
+                        var selectedValue = ev.selectedOptions[0].value;
+
+                        var selected = jQuery(':selected', ev);
+                       
+                        if(selectedValue == 'all_sd' ||  selectedValue == 'all_po' ){
+                        // alert('11111');  
+                          
+                            // jQuery('select#page_assign_to optgroup[label='PO'] option').attr('selected','selected');
+                               var currentOptGroup = selected.closest('optgroup').attr('label');
+                         //  alert(currentOptGroup); 
+
+                           jQuery('optgroup').on('click', function() {
+                                jQuery(this).children('option').prop('selected', 'selected');
+                                jQuery(this).next().children('option').prop('selected', false);
+                                jQuery(this).prev().children('option').prop('selected', false);
+                           });
+
+                        }else{
+                            alert(laxmivishalu18);
+                           
+                            
+
+                        }
+                      
+
+                       
+
+                                }
+                         </script>");
+
+		/*{{CedAddFormField}}*/
+        
+        if (!$model->getId()) {
+            $model->setData('status', $isElementDisabled ? '2' : '1');
+        }
