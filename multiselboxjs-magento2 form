@@ -254,3 +254,18 @@ class Events extends \Magento\Backend\Block\Widget\Form\Generic implements \Mage
         return $option;
     }
 }
+
+----------------
+var optionsArray = [];
+jQuery('select#page_assign_to option:selected').each(function () {	
+var selText = jQuery(this).text();							  
+optionsArray.push(jQuery(this).val());							
+});
+
+if(jQuery.inArray('all_sd', optionsArray) !== -1){
+alert(123456);
+}
+
+if(jQuery.inArray('all_po', optionsArray) !== -1){
+alert(666666);
+}
